@@ -8,17 +8,17 @@ public class IsSorted {
     // Helper recursive function
     private static boolean isSorted(int[] a, int i) {
         //// Replace the following statement with your code
-        // מקרה בסיס: אם הגענו לסוף המערך או שיש איבר אחד בלבד
+        // case base
         if (i >= a.length - 1) {
             return true;
         }
 
-        // אם נמצא איבר שלא בסדר – לא ממוין
+        // if pne element isnt okay or not sorted
         if (a[i] > a[i + 1]) {
             return false;
         }
 
-        // בדיקה רקורסיבית של שאר המערך
+        // Recursive call: check the rest of the array
         return isSorted(a, i + 1);
         }
 

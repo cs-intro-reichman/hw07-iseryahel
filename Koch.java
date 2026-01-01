@@ -29,25 +29,26 @@ public class Koch {
 	public static void curve(int n, double x1, double y1, double x2, double y2) {
 		
 
-			// מקרה בסיס: עומק 0 => נשאר הקו כמו שהוא
+			// case base
 			if (n == 0) 
 				{
 					StdDraw.line(x1, y1, x2, y2);
 					return; 
 				}
 
-			// נקודות שליש (A ו-B)
+			// Compute the first third point A
 			double ax = x1 + (x2 - x1) / 3.0;
 			double ay = y1 + (y2 - y1) / 3.0;
 
+			// Compute the second third point (B)
 			double bx = x1 + 2.0 * (x2 - x1) / 3.0;
 			double by = y1 + 2.0 * (y2 - y1) / 3.0;
 
-			// קודקוד המשולש (C) לפי הנוסחה בדף
+			// compute point C 
 			double cx = (Math.sqrt(3) / 6.0) * (y1 - y2) + 0.5 * (x1 + x2);
 			double cy = (Math.sqrt(3) / 6.0) * (x2 - x1) + 0.5 * (y1 + y2);
 
-			// 4 קריאות רקורסיביות
+			// 4 Recursive calls 
 			curve(n - 1, x1, y1, ax, ay);
 			curve(n - 1, ax, ay, cx, cy);
 			curve(n - 1, cx, cy, bx, by);
