@@ -7,12 +7,48 @@ public class Sierpinski {
 	
 	// Draws a Sierpinski triangle of depth n on the standard canvass.
 	public static void sierpinski (int n) {
-		//// Replace this comment with your code
+		StdDraw.clear(StdDraw.WHITE);
+		StdDraw.setScale(0, 1);
+
+		// set the big tringle vartex
+		double x1 = 0.1, y1 = 0.1;
+		double x2 = 0.9, y2 = 0.1;
+		double x3 = 0.5, y3 = 0.1 + Math.sqrt(3) / 2 * 0.8;
+
+		// draw the big triangle
+		StdDraw.setPenColor(StdDraw.BLACK);
+		StdDraw.line(x1, y1, x2, y2);
+		StdDraw.line(x2, y2, x3, y3);
+		StdDraw.line(x3, y3, x1, y1);
+
+		 // calling the func
+		 sierpinski(n, x1, x2, x3, y1, y2, y3);
 	}
 	
-	// Does the actual drawing, recursively.
-	private static void sierpinski(int n, double x1, double x2, double x3,
-		                                 double y1, double y2, double y3) {
-		//// Replace this comment with your code
+	// Does the actual drawing, recursively
+	private static void sierpinski(int n, double x1, double x2, double x3, double y1, double y2, double y3) {
+		 // base case
+     if (n == 0) {
+        StdDraw.line(x1, y1, x2, y2);
+        StdDraw.line(x2, y2, x3, y3);
+        StdDraw.line(x3, y3, x1, y1);
+        return;
+    }
+
+    //  set the midpoints of the sides
+	double mx12 = (x1 + x2) / 2;
+    double my12 = (y1 + y2) / 2;
+
+    double mx23 = (x2 + x3) / 2;
+    double my23 = (y2 + y3) / 2;
+
+    double mx31 = (x3 + x1) / 2;
+    double my31 = (y3 + y1) / 2;
+
+
+    // call the func
+	sierpinski(n - 1, x1,  mx12, mx31, y1,  my12, my31); // left
+    sierpinski(n - 1, mx12, x2,  mx23, my12, y2,  my23); // right
+    sierpinski(n - 1, mx31, mx23, x3,  my31, my23, y3);  // top
 	}
 }
